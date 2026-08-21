@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI For Agents Blueprint Support Calendar</title>
+<style>
+html,body{margin:0;padding:0;background:#F3F1FA;}
+.cwk-wrap{font-family:Poppins,"Segoe UI",Helvetica,Arial,sans-serif;max-width:1320px;margin:0 auto;padding:20px;}
+.cwk-card{background:#fff;border-radius:16px;padding:22px 22px 26px;box-shadow:0 1px 2px rgba(23,11,46,.05),0 22px 48px -26px rgba(23,11,46,.30);border:1px solid rgba(23,11,46,.06);}
+.cwk-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:3px solid #101828;}
+.cwk-eyebrow{display:flex;align-items:center;gap:7px;}
+.cwk-eyebrow i{display:block;width:26px;height:4px;border-radius:3px;background:#EC1C82;}
+.cwk-eyebrow span{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#344054;}
+.cwk-top h1{margin:4px 0 2px;font-size:clamp(19px,2.3vw,30px);font-weight:800;letter-spacing:-.02em;color:#101828;}
+.cwk-sub{margin:2px 0 0;font-size:clamp(14px,1.7vw,19px);line-height:1.3;font-weight:800;color:#EC1C82;}
+.cwk-note{display:block;width:100%;margin:14px 0 0;padding:9px 14px;border-radius:11px;background:rgba(236,28,130,.09);border:1px solid rgba(236,28,130,.24);font-size:11.5px;line-height:1.5;font-weight:600;color:#1D2939;}
+.cwk-note b{font-weight:800;color:#EC1C82;letter-spacing:.02em;}
+.cwk-brand{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.cwk-brand b{font-size:13px;font-weight:800;}
+.cwk-brand em{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.2em;color:#29ABE2;}
+.cwk-week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin-top:16px;align-items:start;}
+.cwk-day{display:flex;flex-direction:column;gap:7px;}
+.cwk-dayhd{text-align:center;padding-bottom:8px;border-bottom:2px solid #EAECF0;font-size:15px;font-weight:800;letter-spacing:.06em;color:#101828;}
+.cwk-call{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff;box-shadow:0 1px 3px rgba(16,24,40,.09);}
+.cwk-call .cwk-n{font-size:12.5px;line-height:1.25;font-weight:700;}
+.cwk-call .cwk-t{font-size:11px;line-height:1.35;font-weight:500;margin-top:2px;color:rgba(255,255,255,.88);}
+.cwk-call .cwk-badge{display:inline-block;margin-top:5px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.22);font-size:9.5px;font-weight:600;}
+.cwk-pink{background:#EC1C82;} .cwk-navy{background:#2E3192;} .cwk-green{background:#7CB929;}
+.cwk-purple{background:#7B5AA6;} .cwk-orange{background:#F7861F;} .cwk-blue{background:#29ABE2;}
+.cwk-indigo{background:#4B2270;} .cwk-red{background:#E4432D;}
+.cwk-foot{margin:18px 0 0;padding-top:12px;border-top:2px solid #EAECF0;font-size:11px;font-weight:600;color:#344054;}
+@media (max-width:620px){.cwk-week{grid-template-columns:repeat(2,minmax(0,1fr));} .cwk-top{align-items:flex-start;} .cwk-brand{align-items:flex-start;}}
+@media (max-width:400px){.cwk-week{grid-template-columns:1fr;}}
+.cwk-banner{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:14px;padding:11px 16px;border-radius:12px;background:#4B2270;text-decoration:none;border:0;width:100%;text-align:left;cursor:pointer;font:inherit;transition:transform .16s ease, box-shadow .16s ease;}
+.cwk-banner:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(75,34,112,.3);}
+.cwk-banner .cwk-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:#fff;background:rgba(255,255,255,.18);padding:4px 9px;border-radius:999px;}
+.cwk-banner .cwk-ttl{font-size:14px;font-weight:700;color:#fff;letter-spacing:-.01em;}
+.cwk-banner .cwk-txt{font-size:11.5px;font-weight:500;color:rgba(255,255,255,.82);}
+.cwk-modal-overlay{display:none;position:fixed;inset:0;background:rgba(16,24,40,.55);z-index:999;align-items:center;justify-content:center;padding:20px;}
+.cwk-modal-overlay.cwk-open{display:flex;}
+.cwk-modal{position:relative;width:100%;max-width:640px;max-height:86vh;overflow-y:auto;background:#fff;border-radius:16px;padding:clamp(18px,2.4vw,28px);font-family:Poppins,"Segoe UI",Helvetica,Arial,sans-serif;box-shadow:0 30px 60px -20px rgba(16,24,40,.5);}
+.cwk-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:999px;border:none;background:#F2F4F7;color:#344054;font-size:18px;font-weight:700;cursor:pointer;line-height:1;}
+.cwk-modal-close:hover{background:#EAECF0;}
+.cwk-modal h2{margin:0 0 4px;font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.01em;color:#101828;}
+.cwk-modal p.cwk-modal-sub{margin:0 0 16px;font-size:12.5px;font-weight:600;color:#475467;}
+.cwk-host-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:6px;}
+.cwk-host-list li{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:8px;background:#F9FAFB;font-size:12.5px;font-weight:600;color:#1D2939;}
+.cwk-host-list li span.cwk-host-time{font-weight:700;color:#EC1C82;white-space:nowrap;}
+.cwk-join-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 18px;border-radius:12px;background:#EC1C82;color:#fff;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 12px 24px rgba(236,28,130,.32);transition:transform .16s ease;margin-bottom:16px;}
+.cwk-join-btn:hover{transform:translateY(-2px);}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="cwk-wrap">
+<div class="cwk-card">
+
+  <div class="cwk-top">
+    <div>
+      <div class="cwk-eyebrow"><i></i><span>AI For Agents Blueprint</span></div>
+      <h1>AI For Agents Blueprint Support Calendar</h1>
+      <p class="cwk-sub">Every call is a shortcut. Click any call to join.</p>
+    </div>
+    <div class="cwk-brand"><b>AI For Agents</b><em>BLUEPRINT</em></div>
+  </div>
+
+  <p class="cwk-note"><b>Reminder:</b> Have your camera on or full name displayed to avoid removal. Names like &ldquo;iPhone,&rdquo; and AI notetakers are not allowed. Raise your hand for help and have the platform you need open and ready.</p>
+
+  <a class="cwk-banner" href="#" onclick="cwkOpenSkinModal(event)">
+    <span class="cwk-tag">Every Day</span>
+    <span class="cwk-ttl">Skin in the Game</span>
+    <span class="cwk-txt">Click to see today's hosts &amp; join the call</span>
+  </a>
+
+  <div class="cwk-modal-overlay" id="cwkSkinModal" onclick="if(event.target===this){cwkCloseSkinModal();}">
+    <div class="cwk-modal" role="dialog" aria-modal="true" aria-labelledby="cwkSkinModalTitle">
+      <button type="button" class="cwk-modal-close" onclick="cwkCloseSkinModal()" aria-label="Close">&times;</button>
+      <h2 id="cwkSkinModalTitle">Skin in the Game &ndash; Host Schedule</h2>
+      <p class="cwk-modal-sub">All times Pacific. Find your host below, then join the call.</p>
+      <a class="cwk-join-btn" href="https://zoom.us/j/96062300372#success" target="_blank" rel="noopener noreferrer">Join Call</a>
+      <ul class="cwk-host-list">
+        <li><span>Mary Ellen Triolo</span><span class="cwk-host-time">3:15&ndash;3:45 am</span></li>
+        <li><span>Mary Ellen Triolo</span><span class="cwk-host-time">3:45 am</span></li>
+        <li><span>Sumin Acquavella</span><span class="cwk-host-time">4:00 am</span></li>
+        <li><span>Sumin Acquavella</span><span class="cwk-host-time">4:15 am</span></li>
+        <li><span>Katrina Carter</span><span class="cwk-host-time">4:30 am</span></li>
+        <li><span>Katrina Carter</span><span class="cwk-host-time">4:45 am</span></li>
+        <li><span>Shanara Carter</span><span class="cwk-host-time">5:00&ndash;5:15 am</span></li>
+        <li><span>Shanara Carter</span><span class="cwk-host-time">5:15&ndash;5:30 am</span></li>
+        <li><span>Todd Porter</span><span class="cwk-host-time">5:30&ndash;5:45 am</span></li>
+        <li><span>Todd Porter</span><span class="cwk-host-time">5:45&ndash;6:00 am</span></li>
+        <li><span>Tara Roy</span><span class="cwk-host-time">6:00&ndash;6:30 am</span></li>
+        <li><span>Lisa Pinder</span><span class="cwk-host-time">6:30 am</span></li>
+        <li><span>Lisa Pinder</span><span class="cwk-host-time">6:45 am</span></li>
+        <li><span>Duane Newberry</span><span class="cwk-host-time">7:00 am</span></li>
+        <li><span>Duane Newberry</span><span class="cwk-host-time">7:15 am</span></li>
+        <li><span>Duane Newberry</span><span class="cwk-host-time">7:30 am</span></li>
+        <li><span>Duane Newberry</span><span class="cwk-host-time">7:45 am</span></li>
+        <li><span>Susan Gorden Ryan</span><span class="cwk-host-time">9:00 am</span></li>
+        <li><span>Heather Jones</span><span class="cwk-host-time">2:00 pm</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cwk-week">
+
+    <div class="cwk-day">
+      <div class="cwk-dayhd">MON</div>
+      <a class="cwk-call cwk-pink" href="https://us06web.zoom.us/meeting/register/vTx3ZRGKRMaqlbFg1m5TTw" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Coaching Call</div><div class="cwk-t">8:00 &ndash; 10:00 am PT</div></a>
+      <a class="cwk-call cwk-navy" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Mashore Method Office Hours</div><div class="cwk-t">9:00am &ndash; 10:00am PT</div></a>
+      <a class="cwk-call cwk-purple" href="https://us02web.zoom.us/meeting/register/tZwoceqsqz4oGtfq7xZIh39Pvvj6vuog8YFx" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Script Writing</div><div class="cwk-t">11:00 &ndash; 11:45 am PT</div></a>
+    </div>
+
+    <div class="cwk-day">
+      <div class="cwk-dayhd">TUE</div>
+      <a class="cwk-call cwk-navy" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Mashore Method Office Hours</div><div class="cwk-t">9:00am &ndash; 10:00am PT</div></a>
+      <a class="cwk-call cwk-purple" href="https://us06web.zoom.us/j/88076689262?jst=2" target="_blank" rel="noopener noreferrer"><div class="cwk-n">KMC Book Club</div><div class="cwk-t">9:00 &ndash; 10:00 am PT</div><div class="cwk-badge">First Tuesday monthly</div></a>
+      <a class="cwk-call cwk-orange" href="https://us06web.zoom.us/j/85717972212?pwd=MrdEQwIfxsQ98YZfUSh0AuDFYpdAQ6.1" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Office Hours</div><div class="cwk-t">10:00 &ndash; 11:00 am PT</div></a>
+      <a class="cwk-call cwk-blue" href="https://us06web.zoom.us/j/85181544892" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Managing Your Mind with Vickee</div><div class="cwk-t">10:00 &ndash; 11:00 am PT</div></a>
+    </div>
+
+    <div class="cwk-day">
+      <div class="cwk-dayhd">WED</div>
+      <a class="cwk-call cwk-navy" href="https://us06web.zoom.us/j/81206607800?pwd=6bLIbdMbuFcbwfHBnouAZ5AF5y7Mb3.1" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Funnel Office Hours</div><div class="cwk-t">12:00 &ndash; 1:00 pm PT</div></a>
+    </div>
+
+    <div class="cwk-day">
+      <div class="cwk-dayhd">THU</div>
+      <div class="cwk-call cwk-blue"><div class="cwk-n">Group Accountability</div><div class="cwk-t">8:00am &ndash; 9:00am PT</div><div class="cwk-t" style="margin-top:8px;">Reach out to your advisor through Voxer to get a link:<br>Dina: Dina KMC<br>Jennifer: jnew1972</div></div>
+      <a class="cwk-call cwk-navy" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Mashore Method Office Hours</div><div class="cwk-t">9:00am &ndash; 10:00am PT</div></a>
+      <a class="cwk-call cwk-orange" href="https://us06web.zoom.us/j/85717972212?pwd=MrdEQwIfxsQ98YZfUSh0AuDFYpdAQ6.1" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Office Hours</div><div class="cwk-t">10:00 &ndash; 11:00 am PT</div></a>
+    </div>
+
+    <div class="cwk-day">
+      <div class="cwk-dayhd">FRI</div>
+      <a class="cwk-call cwk-navy" href="https://us06web.zoom.us/j/87203284501?pwd=MI2XibuXMaW7w6dyyxE3CCdsWTRaeN.1" target="_blank" rel="noopener noreferrer"><div class="cwk-n">Mashore Method Office Hours</div><div class="cwk-t">1:00pm &ndash; 2:00pm PT</div></a>
+    </div>
+
+  </div>
+
+  <p class="cwk-foot">**All calls are subject to change or removal at any time based on student need and team capacity.</p>
+
+</div>
+</div>
+
+<script>
+function cwkOpenSkinModal(e){
+  if (e) { e.preventDefault(); }
+  document.getElementById('cwkSkinModal').classList.add('cwk-open');
+  document.body.style.overflow = 'hidden';
+}
+function cwkCloseSkinModal(){
+  document.getElementById('cwkSkinModal').classList.remove('cwk-open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') { cwkCloseSkinModal(); }
+});
+</script>
+</body>
+</html>
