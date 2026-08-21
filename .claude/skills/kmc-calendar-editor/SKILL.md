@@ -1,6 +1,6 @@
 ---
 name: kmc-calendar-editor
-description: Use when a team member says "update the KMC calendar", "edit the calendar", "change a call on [calendar]", "add/remove a call from [calendar]", "change a calendar link", "add a host to skin in the game", or otherwise asks to modify one of the KMC support calendars in this repo. Finds out which calendar and what change first, then edits the HTML file directly, preserving every fix required for the calendar to actually work correctly on GHL/mobile.
+description: Use when a team member says "update the KMC calendar", "edit the calendar", "change a call on [calendar]", "add/remove a call from [calendar]", "change a calendar link", "add a host to skin in the game", or otherwise asks to modify one of the KMC support calendars in this repo. Finds out which calendar and what change first, then edits the HTML file directly, preserving every fix required for the calendar to actually work correctly on GHL/mobile. Also covers urgent requests like "I need a quick backup", "the embed isn't working, give me something I can just paste", or "this calendar broke, I need a fallback right now" — produces a plain-text, still-colorful, no-HTML version of the calendar that survives being pasted into a rich-text lesson editor.
 model_tier: workhorse
 version: v1.0
 ---
@@ -20,6 +20,7 @@ Edits any of the HTML support calendars in this repository — day-column call s
 - "Change the link for [call]"
 - "Add/remove a host on Skin in the Game"
 - Any request to modify one of the calendar HTML files in this repo
+- **Urgent/backup requests** — "I need a quick backup," "this isn't working, give me something I can just paste," "the embed broke and I need a fallback right now," "urgent, need a calendar now" — see the dedicated section below, this is a different output, not an HTML edit
 
 ## How it works
 
@@ -68,6 +69,57 @@ These are hard-won fixes from real mobile testing — re-breaking any of them si
 Say plainly that the file is changed **locally only**. Whoever's using Claude needs to commit and push the change themselves in GitHub Desktop (or ask Claude to do it, if they're comfortable with that) before it goes live on the GitHub Pages URL.
 
 Before starting any edit, it's worth reminding them to **pull the latest changes first** if they haven't already this session — someone else on the team may have already changed the same file, and editing an outdated local copy risks losing their change or creating a merge conflict.
+
+## Backup / urgent plain-text version
+
+If someone signals urgency or says the embedded calendar isn't working — "I need a quick backup," "this broke, give me something I can just paste," "the embed isn't working," "urgent" — **don't edit the HTML file.** Give them a plain-text version instead, built for pasting directly into a rich-text lesson editor (the same "custom code" box that flattens real HTML into literal text — this format is designed to survive that).
+
+**Rules for this format:**
+
+- **No HTML tags at all.** Plain text only, so it can't get mangled by an editor that doesn't render markup.
+- **Still colorful** — use colored square/circle emoji in place of the CSS color classes, so it's still visually organized at a glance. Map them the same way every time:
+  - 🟥 pink &nbsp; 🟦 navy &nbsp; 🟩 green &nbsp; 🟪 purple &nbsp; 🟧 orange &nbsp; 🔵 blue &nbsp; 🟣 the "Skin in the Game" / daily-recurring item
+  - Match each call to whatever color it already uses in the real HTML file, so the backup stays visually consistent with the live version.
+- **Show every link as a plain, visible URL** — not hidden behind link text. The whole point is that someone can read or copy the raw address even if the editor doesn't turn it into a clickable link.
+- **Keep it to name — time — link, one call per line.** No modal, no host popup — if a calendar's "Skin in the Game" normally opens a host-schedule popup, just show the single Join Call link once at the top instead of the full host breakdown. This is a fallback, not a feature-complete replacement.
+- Pull the actual current names, times, and links straight from the real HTML file for whichever calendar was asked for — never invent or guess at content for a backup.
+
+**Format template:**
+
+```
+📅 [CALENDAR NAME] — BACKUP VERSION
+Copy the link next to a call to join it.
+
+🟣 SKIN IN THE GAME (every day)
+Join: [link]
+
+[DAY]
+🟥 [Call Name] — [Time] — [link]
+🟦 [Call Name] — [Time] — [link]
+🟩 [Call Name] — [Time] — [link]
+
+[NEXT DAY]
+...
+```
+
+**Worked example** (Mastery Support Calendar, Monday only, shortened for illustration):
+
+```
+📅 MASTERY SUPPORT CALENDAR — BACKUP VERSION
+Copy the link next to a call to join it.
+
+🟣 SKIN IN THE GAME (every day)
+Join: https://zoom.us/j/96062300372#success
+
+MONDAY
+🟥 Coaching Call — 8:00–9:15 am PT — https://us06web.zoom.us/meeting/register/vTx3ZRGKRMaqlbFg1m5TTw
+🟦 Mashore Method Office Hours — 9:00–10:00 am PT — https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1
+🟩 Social Media & AI Tools with Hailey — 11:00 am–12:00 pm PT — https://us06web.zoom.us/j/89380883117?pwd=C7SbwGgplaznqOQ03sibEYrkkFtYcb.1
+🟪 Script Writing — 11:00–11:45 am PT — https://us02web.zoom.us/meeting/register/tZwoceqsqz4oGtfq7xZIh39Pvvj6vuog8YFx
+🟧 Office Hours — 12:00–1:00 pm PT — https://us06web.zoom.us/j/86844179805?pwd=On5nHkpOf3qHA5IB93THUnhE9T3WEq.1
+```
+
+After handing this over, mention that it's a stopgap — the real fix is getting the actual embed working again (or pushing a corrected HTML file), and this plain-text version won't auto-update if the calendar changes later.
 
 ## What it produces
 
