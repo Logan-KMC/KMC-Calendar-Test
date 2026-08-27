@@ -6,110 +6,89 @@
 <title>Mastery Support Calendar</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-html,body{margin:0;padding:0;background:#F6F4FA;}
+html,body{margin:0;padding:0;background:#150F22;}
 .kmcal-stage, .kmcal-stage * { box-sizing: border-box; }
-.kmcal-stage { position: relative; overflow: hidden; width: 100%;
-  padding: clamp(10px,1.4vw,22px); background: #F6F4FA; isolation: isolate; }
-.kmcal-stage::before, .kmcal-stage::after { content: ""; position: absolute; inset: -30%; z-index: 0; pointer-events: none; }
-.kmcal-stage::before {
-  background:
-    radial-gradient(38% 46% at 16% 26%, rgba(236,28,130,.30), transparent 64%),
-    radial-gradient(34% 44% at 80% 20%, rgba(41,171,226,.28), transparent 64%),
-    radial-gradient(40% 48% at 64% 84%, rgba(123,90,166,.28), transparent 66%);
-  animation: kmcalDriftA 26s ease-in-out infinite alternate; }
-.kmcal-stage::after {
-  background:
-    radial-gradient(32% 40% at 84% 70%, rgba(247,134,31,.24), transparent 64%),
-    radial-gradient(36% 42% at 26% 80%, rgba(124,185,41,.22), transparent 64%),
-    radial-gradient(30% 38% at 50% 8%, rgba(46,49,146,.22), transparent 64%);
-  animation: kmcalDriftB 34s ease-in-out infinite alternate; }
-@keyframes kmcalDriftA {
-  0%   { transform: translate3d(-4%, -3%, 0) scale(1.05) rotate(0deg); }
-  50%  { transform: translate3d(5%, 4%, 0) scale(1.14) rotate(6deg); }
-  100% { transform: translate3d(-2%, 6%, 0) scale(1.06) rotate(-5deg); } }
-@keyframes kmcalDriftB {
-  0%   { transform: translate3d(4%, 5%, 0) scale(1.10) rotate(3deg); }
-  50%  { transform: translate3d(-6%, -4%, 0) scale(1.18) rotate(-7deg); }
-  100% { transform: translate3d(3%, -6%, 0) scale(1.08) rotate(5deg); } }
-@media (prefers-reduced-motion: reduce) {
-  .kmcal-stage::before, .kmcal-stage::after { animation: none; } }
+.kmcal-stage { position: relative; width: 100%; padding: clamp(10px,1.4vw,22px); background: #150F22; }
 .kmcal-note { display: block; width: 100%; margin: clamp(8px,1vw,14px) 0 0;
   padding: clamp(7px,.8vw,11px) clamp(9px,1vw,14px); border-radius: 11px;
-  background: rgba(236,28,130,.09); border: 1px solid rgba(236,28,130,.24);
-  font-size: clamp(9.5px,.88vw,11.5px); line-height: 1.5; font-weight: 600; color: #1D2939; text-wrap: pretty; }
-.kmcal-note b { font-weight: 800; color: #EC1C82; letter-spacing: .02em; }
+  background: rgba(51,214,176,.09); border: 1px solid rgba(51,214,176,.28);
+  font-size: clamp(9.5px,.88vw,11.5px); line-height: 1.5; font-weight: 600; color: #DCD6F5; text-wrap: pretty; }
+.kmcal-note b { font-weight: 800; color: #33D6B0; letter-spacing: .02em; }
+.kmcal-note a { color: #33D6B0; font-weight: 800; }
 .kmcal, .kmcal * { box-sizing: border-box; }
-.kmcal { position: relative; z-index: 1; font-family: Poppins, "Segoe UI", Helvetica, Arial, sans-serif; color: #101828;
-  max-width: 1440px; margin: 0 auto; padding: clamp(12px,1.5vw,22px) clamp(12px,1.5vw,22px) clamp(14px,1.7vw,24px);
-  background: #ffffff; border: 1px solid rgba(23,11,46,.06); border-radius: 16px;
-  box-shadow: 0 1px 2px rgba(23,11,46,.05), 0 22px 48px -26px rgba(23,11,46,.30); }
-.kmcal-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
-  gap: 12px; padding-bottom: clamp(6px,.8vw,12px); border-bottom: 3px solid #101828; }
-.kmcal-eyebrow { display: flex; align-items: center; gap: 7px; }
-.kmcal-eyebrow i { display: block; width: clamp(18px,1.8vw,28px); height: 4px; border-radius: 3px; background: #EC1C82; }
-.kmcal-eyebrow span { font-size: clamp(8.5px,.78vw,10.5px); font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #344054; }
-.kmcal h1 { margin: 4px 0 2px; font-size: clamp(19px,2.3vw,30px); line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
-.kmcal-sub { margin: 2px 0 0; font-size: clamp(14px,1.7vw,19px); line-height: 1.3; font-weight: 800; color: #EC1C82; }
-.kmcal-brand { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
-.kmcal-brand b { font-size: clamp(10.5px,.95vw,13px); font-weight: 800; letter-spacing: -.01em; }
-.kmcal-brand em { font-style: normal; font-size: clamp(8.5px,.78vw,10.5px); font-weight: 700; letter-spacing: .2em; color: #29ABE2; }
+.kmcal { position: relative; overflow: hidden; font-family: Poppins, "Segoe UI", Helvetica, Arial, sans-serif; color: #F5F3FF;
+  max-width: 1440px; margin: 0 auto; padding: clamp(20px,2.6vw,30px) clamp(20px,2.6vw,30px) clamp(22px,2.8vw,34px);
+  background: #1B1330; border: 1px solid rgba(255,255,255,.08); border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.3), 0 30px 60px -30px rgba(0,0,0,.6); }
+.kmcal-suit { position: absolute; top: 18px; font-size: 64px; color: rgba(255,255,255,.05); pointer-events: none; line-height: 1; }
+.kmcal-suit-l { left: 14px; } .kmcal-suit-r { right: 14px; }
+.kmcal-dots { height: 3px; margin: 0 clamp(-30px,-2.8vw,-20px); background-image: radial-gradient(circle, var(--dotcolor) 1.6px, transparent 1.6px);
+  background-size: 16px 3px; background-repeat: repeat-x; }
+.kmcal-dots-top { --dotcolor: #F4B740; margin-bottom: 18px; }
+.kmcal-dots-bot { --dotcolor: #E8467F; margin-top: 18px; }
+.kmcal-top { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; padding: 2px 8px 4px; }
+.kmcal-eyebrow { font-size: clamp(9.5px,.9vw,11px); font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: #33D6B0; }
+.kmcal h1 { margin: 6px 0 2px; font-size: clamp(24px,3.4vw,40px); line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
+.kmcal h1 .vg-gold { color: #F4B740; }
+.kmcal-sub { margin: 2px auto 0; max-width: 640px; font-size: clamp(12.5px,1.3vw,14.5px); line-height: 1.5; font-weight: 500; color: #B9AEDD; }
 .kmcal-banner { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(7px,.9vw,12px);
-  margin-top: clamp(8px,1vw,14px); padding: clamp(7px,.85vw,11px) clamp(10px,1.3vw,18px);
-  border-radius: 12px; background: #4B2270; text-decoration: none; transition: transform .16s ease, box-shadow .16s ease; }
-.kmcal-banner:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(75,34,112,.3); }
+  margin-top: clamp(10px,1.2vw,16px); padding: clamp(9px,1vw,12px) clamp(12px,1.4vw,16px);
+  border-radius: 12px; background: linear-gradient(135deg,rgba(244,183,64,.16),rgba(232,70,127,.16)); border:1px solid rgba(255,255,255,.12); text-decoration: none; transition: transform .16s ease; }
+.kmcal-banner:hover { transform: translateY(-2px); }
 .kmcal-banner .kmcal-tag { font-size: clamp(8.5px,.76vw,10.5px); font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  white-space: nowrap; color: #fff; background: rgba(255,255,255,.18); padding: 4px 9px; border-radius: 999px; }
-.kmcal-banner .kmcal-ttl { font-size: clamp(12px,1.2vw,16px); font-weight: 700; color: #fff; letter-spacing: -.01em; }
-.kmcal-banner .kmcal-txt { font-size: clamp(9.5px,.92vw,12px); font-weight: 500; color: rgba(255,255,255,.82); }
-.kmcal-week { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(6px,.7vw,11px);
-  margin-top: clamp(8px,1.1vw,16px); align-items: start; }
-.kmcal-day { display: flex; flex-direction: column; gap: clamp(4px,.5vw,7px); }
-.kmcal-dayhd { display: flex; align-items: baseline; justify-content: space-between; gap: 4px;
-  padding: 0 1px clamp(4px,.6vw,8px); border-bottom: 2px solid #EAECF0; }
-.kmcal-dayhd b { font-size: clamp(12px,1.35vw,17px); font-weight: 800; letter-spacing: .04em; }
-.kmcal-dayhd i { font-style: normal; font-size: clamp(8.5px,.75vw,10.5px); font-weight: 700; letter-spacing: .08em; color: #475467; }
-.kmcal-call { display: block; padding: clamp(7px,.85vw,11px) clamp(8px,.9vw,12px); border-radius: 10px;
-  text-decoration: none; color: #fff; box-shadow: 0 1px 3px rgba(16,24,40,.09); transition: transform .16s ease, box-shadow .16s ease; }
+  white-space: nowrap; color: #150F22; background: #F4B740; padding: 4px 9px; border-radius: 999px; }
+.kmcal-banner .kmcal-ttl { font-size: clamp(12px,1.2vw,16px); font-weight: 800; color: #F5F3FF; letter-spacing: -.01em; }
+.kmcal-banner .kmcal-txt { font-size: clamp(9.5px,.92vw,12px); font-weight: 500; color: #CFC7EC; }
+.kmcal-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: 18px 0 4px; }
+.kmcal-legend span { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; color: #CFC7EC; }
+.kmcal-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; font-style: normal; }
+.kmcal-legend .kmcal-legend-icon { width: auto; height: auto; border-radius: 0; font-size: 12px; color: #CFC7EC; }
+.kmcal-week { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px,.9vw,12px);
+  margin-top: clamp(10px,1.3vw,16px); align-items: start; }
+.kmcal-day { display: flex; flex-direction: column; gap: clamp(6px,.6vw,8px); background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07); border-radius: 16px; padding: clamp(11px,1.3vw,14px) clamp(7px,.9vw,10px); }
+.kmcal-dayhd { display: flex; flex-direction: column; align-items: center; justify-content: center; width: clamp(46px,4.8vw,54px); height: clamp(46px,4.8vw,54px);
+  margin: 0 auto 4px; border-radius: 50%; background: #150F22; border: 1px solid rgba(255,255,255,.14); }
+.kmcal-dayhd b { font-size: clamp(11px,1.1vw,13px); font-weight: 800; letter-spacing: .06em; color: #F5F3FF; }
+.kmcal-dayhd i { font-style: normal; font-size: clamp(7.5px,.7vw,9px); font-weight: 700; letter-spacing: .08em; color: #7C7398; }
+.kmcal-call, .kmcal-plain { display: block; padding: clamp(7px,.85vw,11px) clamp(8px,.9vw,12px); border-radius: 10px;
+  text-decoration: none; border: 1px solid transparent; transition: transform .16s ease; }
 .kmcal-call:hover { transform: translateY(-3px); }
-.kmcal-call .kmcal-n { font-size: clamp(10.5px,1.02vw,13.5px); line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
-.kmcal-call .kmcal-t { font-size: clamp(9.5px,.9vw,11.5px); line-height: 1.35; font-weight: 500; margin-top: 2px; color: rgba(255,255,255,.88); }
+.kmcal-call .kmcal-n, .kmcal-plain .kmcal-n { font-size: clamp(10.5px,1.02vw,13px); line-height: 1.25; font-weight: 700; letter-spacing: -.01em; color: #F5F3FF; }
+.kmcal-call .kmcal-t, .kmcal-plain .kmcal-t { display: block; font-family: "Courier New", ui-monospace, Menlo, monospace; font-size: clamp(9.5px,.88vw,11px); line-height: 1.4; font-weight: 600; margin-top: 3px; }
 .kmcal-call .kmcal-badge { display: inline-block; margin-top: 5px; padding: 2px 7px; border-radius: 999px;
-  background: rgba(255,255,255,.22); font-size: clamp(8.5px,.74vw,10px); font-weight: 600; letter-spacing: .03em; }
-.kmcal-pink { background: #EC1C82; } .kmcal-pink:hover { box-shadow: 0 12px 24px rgba(236,28,130,.32); }
-.kmcal-navy { background: #2E3192; } .kmcal-navy:hover { box-shadow: 0 12px 24px rgba(46,49,146,.32); }
-.kmcal-green { background: #7CB929; } .kmcal-green:hover { box-shadow: 0 12px 24px rgba(124,185,41,.36); }
-.kmcal-purple { background: #7B5AA6; } .kmcal-purple:hover { box-shadow: 0 12px 24px rgba(123,90,166,.34); }
-.kmcal-orange { background: #F7861F; } .kmcal-orange:hover { box-shadow: 0 12px 24px rgba(247,134,31,.34); }
-.kmcal-blue { background: #29ABE2; } .kmcal-blue:hover { box-shadow: 0 12px 24px rgba(41,171,226,.34); }
-.kmcal-foot { margin: clamp(10px,1.2vw,18px) 0 0; padding-top: clamp(6px,.8vw,12px); border-top: 2px solid #EAECF0;
-  font-size: clamp(9px,.82vw,11px); line-height: 1.5; font-weight: 600; color: #344054; }
-@media (max-width: 620px) {
-  .kmcal-week { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .kmcal-top { align-items: flex-start; }
-  .kmcal-brand { align-items: flex-start; }
-}
+  background: rgba(255,255,255,.12); font-size: clamp(8.5px,.74vw,10px); font-weight: 600; letter-spacing: .03em; color: #CFC7EC; }
+.kmcal-gold { background: rgba(244,183,64,.14); border-color: rgba(244,183,64,.4); } .kmcal-gold .kmcal-t { color: #F4B740; }
+.kmcal-teal { background: rgba(51,214,176,.14); border-color: rgba(51,214,176,.38); } .kmcal-teal .kmcal-t { color: #33D6B0; }
+.kmcal-pink { background: rgba(232,70,127,.16); border-color: rgba(232,70,127,.4); } .kmcal-pink .kmcal-t { color: #E8467F; }
+.kmcal-violet { background: rgba(140,122,224,.16); border-color: rgba(140,122,224,.4); } .kmcal-violet .kmcal-t { color: #8C7AE0; }
+.kmcal-plain { border-style: dashed; }
+.kmcal-foot { margin: clamp(14px,1.6vw,20px) 0 0; padding-top: clamp(8px,1vw,14px); border-top: 1px solid rgba(255,255,255,.08);
+  font-size: clamp(9px,.82vw,11px); line-height: 1.6; font-weight: 500; color: #7C7398; font-style: italic; text-align: center; }
+.kmcal-tagline { margin: 6px 0 0; font-size: clamp(9.5px,.92vw,11.5px); font-weight: 800; color: #E8467F; text-align: center; }
+@media (max-width: 620px) { .kmcal-week { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
 @media (max-width: 400px) { .kmcal-week { grid-template-columns: 1fr; } }
 .kmcal-banner-btn { border: 0; width: 100%; text-align: left; }
-.kmcal-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(16,24,40,.55); z-index: 999;
+.kmcal-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,6,20,.7); z-index: 999;
   align-items: center; justify-content: center; padding: 20px; }
 .kmcal-modal-overlay.kmcal-open { display: flex; }
 .kmcal-modal { position: relative; width: 100%; max-width: 640px; max-height: 86vh; overflow-y: auto;
-  background: #fff; border-radius: 16px; padding: clamp(18px,2.4vw,28px);
+  background: #1B1330; border-radius: 16px; padding: clamp(18px,2.4vw,28px);
   font-family: Poppins, "Segoe UI", Helvetica, Arial, sans-serif;
-  box-shadow: 0 30px 60px -20px rgba(16,24,40,.5); }
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.1); }
 .kmcal-modal-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 999px;
-  border: none; background: #F2F4F7; color: #344054; font-size: 18px; font-weight: 700; cursor: pointer; line-height: 1; }
-.kmcal-modal-close:hover { background: #EAECF0; }
-.kmcal-modal h2 { margin: 0 0 4px; font-size: clamp(17px,2vw,22px); font-weight: 800; letter-spacing: -.01em; color: #101828; }
-.kmcal-modal p.kmcal-modal-sub { margin: 0 0 16px; font-size: 12.5px; font-weight: 600; color: #475467; }
+  border: none; background: rgba(255,255,255,.08); color: #F5F3FF; font-size: 18px; font-weight: 700; cursor: pointer; line-height: 1; }
+.kmcal-modal-close:hover { background: rgba(255,255,255,.16); }
+.kmcal-modal h2 { margin: 0 0 4px; font-size: clamp(17px,2vw,22px); font-weight: 800; letter-spacing: -.01em; color: #F5F3FF; }
+.kmcal-modal p.kmcal-modal-sub { margin: 0 0 16px; font-size: 12.5px; font-weight: 600; color: #B9AEDD; }
 .kmcal-host-list { list-style: none; margin: 0; padding: 0; display: grid;
   grid-template-columns: 1fr; gap: 6px; }
 .kmcal-host-list li { display: flex; justify-content: space-between; gap: 8px; padding: 8px 10px;
-  border-radius: 8px; background: #F9FAFB; font-size: 12.5px; font-weight: 600; color: #1D2939; }
-.kmcal-host-list li span.kmcal-host-time { font-weight: 700; color: #EC1C82; white-space: nowrap; }
+  border-radius: 8px; background: rgba(255,255,255,.05); font-size: 12.5px; font-weight: 600; color: #F5F3FF; }
+.kmcal-host-list li span.kmcal-host-time { font-weight: 700; color: #F4B740; white-space: nowrap; }
 .kmcal-join-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
-  padding: 13px 18px; border-radius: 12px; background: #EC1C82; color: #fff; font-weight: 800; font-size: 14px;
-  text-decoration: none; box-shadow: 0 12px 24px rgba(236,28,130,.32); transition: transform .16s ease; margin-bottom: 16px; }
+  padding: 13px 18px; border-radius: 12px; background: #E8467F; color: #fff; font-weight: 800; font-size: 14px;
+  text-decoration: none; box-shadow: 0 12px 24px rgba(232,70,127,.32); transition: transform .16s ease; margin-bottom: 16px; }
 .kmcal-join-btn:hover { transform: translateY(-2px); }
 </style>
 </head>
@@ -118,21 +97,26 @@ html,body{margin:0;padding:0;background:#F6F4FA;}
 <div class="kmcal-stage">
 <div class="kmcal">
 
+  <div class="kmcal-dots kmcal-dots-top"></div>
+
   <div class="kmcal-top">
-    <div>
-      <div class="kmcal-eyebrow"><i></i><span>The Mashore Blueprint</span></div>
-      <h1>Mastery Support Calendar</h1>
-      <p class="kmcal-sub">Every call is a shortcut. Click any call to join.</p>
-    </div>
-    <div class="kmcal-brand"><b>Krista Mashore</b><em>COACHING</em></div>
+    <span class="kmcal-suit kmcal-suit-l">&spades;</span>
+    <span class="kmcal-suit kmcal-suit-r">&clubs;</span>
+    <div class="kmcal-eyebrow">The Mashore Blueprint</div>
+    <h1>Mastery <span class="vg-gold">Vegas Week</span> Support Calendar</h1>
+    <p class="kmcal-sub">The KMC team is on the Strip this week &mdash; your coaching calls, office hours, and support aren&rsquo;t skipping a beat.</p>
   </div>
 
+  <div class="kmcal-dots kmcal-dots-bot"></div>
+
   <p class="kmcal-note"><b>Reminder:</b> Have your camera on or full name displayed to avoid removal. Names like &ldquo;iPhone,&rdquo; and AI notetakers are not allowed. Raise your hand for help and have the platform you need open and ready.</p>
+
+  <p class="kmcal-note"><b>Support:</b> Our team will continue to be available to support you throughout the week. Please reach out to <a href="mailto:support@kristamashore.com">support@kristamashore.com</a> or connect with your Accountability Coach via Voxer if you need assistance.</p>
 
   <a class="kmcal-banner kmcal-banner-btn" href="#" onclick="kmcalOpenSkinModal(event)">
     <span class="kmcal-tag">Every Day</span>
     <span class="kmcal-ttl">Skin in the Game</span>
-    <span class="kmcal-txt">Click to see today's hosts &amp; join the call</span>
+    <span class="kmcal-txt">Click to see today&rsquo;s hosts &amp; join the call</span>
   </a>
 
   <div class="kmcal-modal-overlay" id="kmcalSkinModal" onclick="if(event.target===this){kmcalCloseSkinModal();}">
@@ -165,69 +149,75 @@ html,body{margin:0;padding:0;background:#F6F4FA;}
     </div>
   </div>
 
+  <div class="kmcal-legend">
+    <span><i style="background:#F4B740;"></i>Coaching Call</span>
+    <span><i style="background:#33D6B0;"></i>Mashore Method Office Hours</span>
+    <span><i style="background:#E8467F;"></i>Open Office Hours</span>
+    <span><i class="kmcal-legend-icon">&#8635;</i>Skin in the Game</span>
+  </div>
+
   <div class="kmcal-week">
 
     <div class="kmcal-day">
       <div class="kmcal-dayhd"><b>MON</b><i>5</i></div>
-      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/meeting/register/vTx3ZRGKRMaqlbFg1m5TTw" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-gold" href="https://us06web.zoom.us/meeting/register/vTx3ZRGKRMaqlbFg1m5TTw" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Coaching Call</div><div class="kmcal-t">8:00 &ndash; 9:15 am PT</div></a>
-      <a class="kmcal-call kmcal-navy" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-teal" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Mashore Method Office Hours</div><div class="kmcal-t">9:00 &ndash; 10:00 am PT</div></a>
-      <a class="kmcal-call kmcal-green" href="https://us06web.zoom.us/j/89380883117?pwd=C7SbwGgplaznqOQ03sibEYrkkFtYcb.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-violet" href="https://us06web.zoom.us/j/89380883117?pwd=C7SbwGgplaznqOQ03sibEYrkkFtYcb.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Social Media &amp; AI Tools with Hailey</div><div class="kmcal-t">11:00 &ndash; 12:00 pm PT</div></a>
-      <a class="kmcal-call kmcal-purple" href="https://us02web.zoom.us/meeting/register/tZwoceqsqz4oGtfq7xZIh39Pvvj6vuog8YFx" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-violet" href="https://us02web.zoom.us/meeting/register/tZwoceqsqz4oGtfq7xZIh39Pvvj6vuog8YFx" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Script Writing</div><div class="kmcal-t">11:00 &ndash; 11:45 am PT</div></a>
-      <a class="kmcal-call kmcal-orange" href="https://us06web.zoom.us/j/86844179805?pwd=On5nHkpOf3qHA5IB93THUnhE9T3WEq.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/j/86844179805?pwd=On5nHkpOf3qHA5IB93THUnhE9T3WEq.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Office Hours</div><div class="kmcal-t">12:00 &ndash; 1:00 pm PT</div></a>
+      <div class="kmcal-plain kmcal-violet"><div class="kmcal-n">Buyer/Seller Guides Workshop</div><div class="kmcal-t">Time TBD</div></div>
     </div>
 
     <div class="kmcal-day">
       <div class="kmcal-dayhd"><b>TUE</b><i>4</i></div>
-      <a class="kmcal-call kmcal-navy" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-teal" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Mashore Method Office Hours</div><div class="kmcal-t">9:00 &ndash; 10:00 am PT</div></a>
-      <a class="kmcal-call kmcal-purple" href="https://us06web.zoom.us/j/88076689262?jst=2" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-violet" href="https://us06web.zoom.us/j/88076689262?jst=2" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">KMC Book Club</div><div class="kmcal-t">9:00 &ndash; 10:00 am PT</div>
         <div class="kmcal-badge">First Tuesday monthly</div></a>
-      <a class="kmcal-call kmcal-blue" href="https://us06web.zoom.us/j/85181544892" target="_blank" rel="noopener noreferrer">
-        <div class="kmcal-n">Managing Your Mind with Vickee</div><div class="kmcal-t">10:00 &ndash; 11:00 am PT</div></a>
-      <a class="kmcal-call kmcal-orange" href="https://us06web.zoom.us/j/85717972212?pwd=MrdEQwIfxsQ98YZfUSh0AuDFYpdAQ6.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/j/85717972212?pwd=MrdEQwIfxsQ98YZfUSh0AuDFYpdAQ6.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Office Hours</div><div class="kmcal-t">10:00 &ndash; 11:00 am PT</div></a>
+      <a class="kmcal-call kmcal-violet" href="https://us06web.zoom.us/j/85181544892" target="_blank" rel="noopener noreferrer">
+        <div class="kmcal-n">Managing Your Mind with Vickee</div><div class="kmcal-t">10:00 &ndash; 11:00 am PT</div></a>
     </div>
 
     <div class="kmcal-day">
       <div class="kmcal-dayhd"><b>WED</b><i>3</i></div>
-      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/meeting/register/h8-kZHoNSFWB1rEFh110YQ" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-gold" href="https://us06web.zoom.us/meeting/register/h8-kZHoNSFWB1rEFh110YQ" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Mastery Coaching Call</div><div class="kmcal-t">8:00 &ndash; 9:15 am PT</div></a>
-      <a class="kmcal-call kmcal-navy" href="https://us06web.zoom.us/j/81206607800?pwd=6bLIbdMbuFcbwfHBnouAZ5AF5y7Mb3.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-violet" href="https://us06web.zoom.us/j/81206607800?pwd=6bLIbdMbuFcbwfHBnouAZ5AF5y7Mb3.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Funnel Office Hours</div><div class="kmcal-t">12:00 &ndash; 1:00 pm PT</div></a>
-      <a class="kmcal-call kmcal-orange" href="https://us06web.zoom.us/j/86034246898?pwd=TnHkmXK7avImUqxLUMlOuaJYIfoKiv.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/j/86034246898?pwd=TnHkmXK7avImUqxLUMlOuaJYIfoKiv.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Office Hours</div><div class="kmcal-t">1:00 &ndash; 2:00 pm PT</div></a>
     </div>
 
     <div class="kmcal-day">
       <div class="kmcal-dayhd"><b>THU</b><i>4</i></div>
-      <a class="kmcal-call kmcal-orange" href="https://us06web.zoom.us/j/85781260004?pwd=ctyeaN7Na598vBeTKIHWwOcFqojOXx.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/j/85781260004?pwd=ctyeaN7Na598vBeTKIHWwOcFqojOXx.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Office Hours</div><div class="kmcal-t">6:00 &ndash; 7:00 am PT</div></a>
-      <div class="kmcal-call kmcal-blue">
-        <div class="kmcal-n">Group Accountability</div><div class="kmcal-t">8:00 &ndash; 9:00 am PT</div>
-        <div class="kmcal-t" style="margin-top:8px;">Reach out to your advisor through Voxer to get a link:<br>Dina: Dina KMC<br>Jennifer: jnew1972</div></div>
-      <a class="kmcal-call kmcal-navy" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-teal" href="https://us06web.zoom.us/j/83623495908?pwd=iac3iz4wUuvKblnEBnGmnX4jZmboUy.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Mashore Method Office Hours</div><div class="kmcal-t">9:00 &ndash; 10:00 am PT</div></a>
-      <a class="kmcal-call kmcal-orange" href="https://us06web.zoom.us/j/85717972212?pwd=MrdEQwIfxsQ98YZfUSh0AuDFYpdAQ6.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/j/85717972212?pwd=MrdEQwIfxsQ98YZfUSh0AuDFYpdAQ6.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Office Hours</div><div class="kmcal-t">10:00 &ndash; 11:00 am PT</div></a>
     </div>
 
     <div class="kmcal-day">
       <div class="kmcal-dayhd"><b>FRI</b><i>2</i></div>
-      <a class="kmcal-call kmcal-orange" href="https://us06web.zoom.us/j/88321885201?pwd=ixDeR9u36l8E3T7GHUJTFgbbHlG77v.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-pink" href="https://us06web.zoom.us/j/88321885201?pwd=ixDeR9u36l8E3T7GHUJTFgbbHlG77v.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Office Hours</div><div class="kmcal-t">9:30 &ndash; 11:00 am PT</div></a>
-      <a class="kmcal-call kmcal-navy" href="https://us06web.zoom.us/j/87203284501?pwd=MI2XibuXMaW7w6dyyxE3CCdsWTRaeN.1" target="_blank" rel="noopener noreferrer">
+      <a class="kmcal-call kmcal-teal" href="https://us06web.zoom.us/j/87203284501?pwd=MI2XibuXMaW7w6dyyxE3CCdsWTRaeN.1" target="_blank" rel="noopener noreferrer">
         <div class="kmcal-n">Mashore Method Office Hours</div><div class="kmcal-t">1:00 &ndash; 2:00 pm PT</div></a>
     </div>
 
   </div>
 
   <p class="kmcal-foot">All times are Pacific. All calls are subject to change or removal at any time based on student need and team capacity.</p>
+  <p class="kmcal-tagline">What happens in Vegas stays in Vegas &mdash; your coaching calls don&rsquo;t. &spades;</p>
 
 </div>
 </div>
